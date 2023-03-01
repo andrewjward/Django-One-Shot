@@ -1,9 +1,9 @@
 from django.contrib import admin
-from todos.models import TodoList, TodoItem
+from todos.models import TodoLists, TodoItem
 
 
 # Register your models here.
-@admin.register(TodoList)
+@admin.register(TodoLists)
 class TodoListAdmin(admin.ModelAdmin):
     list_display = (
         "name",
