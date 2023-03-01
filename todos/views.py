@@ -32,3 +32,21 @@ def create_todo_list(request):
         "form": form,
     }
     return render(request, "todos/create.html", context)
+
+
+def edit_todo_list(request, id):
+    post = get_object_or_404(TodoLists, id=id)
+    if request.method == "POST":
+        form = TodoListForm(request.POST, instance=post)
+        if form.is_valid():
+            edit = form.save()
+            return redirect("todo_list_detail", id=edit.id)
+    else:
+        form = TodoListForm(instance=post)
+
+    context = {
+        "edit_object": post,
+        "form": form,
+    }
+
+    return render(request, "todos/edit.html", context)

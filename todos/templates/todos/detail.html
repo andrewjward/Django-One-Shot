@@ -10,6 +10,7 @@
         <main>
             <div>
                 <h1>{{ list_object.name }}</h1>
+                <a href="{% url 'edit_list' list_object.id %}">Edit</a>
                 <h2>Tasks</h2>
             </div>
             <table>
