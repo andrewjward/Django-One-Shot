@@ -43,10 +43,16 @@ def edit_todo_list(request, id):
             return redirect("todo_list_detail", id=edit.id)
     else:
         form = TodoListForm(instance=post)
-
     context = {
         "edit_object": post,
         "form": form,
     }
-
     return render(request, "todos/edit.html", context)
+
+
+def delete_todo_list(request, id):
+    delete = TodoLists.objects.get(id=id)
+    if request.method == "POST":
+        delete.delete()
+        return redirect("todo_list_list")
+    return render(request, "todos/delete.html")
